@@ -22,18 +22,18 @@ function adicionaLinha() {
     const inputNotaAtividade = document.getElementById('nota-atividade');
 
     if (atividades.includes(inputNomeAtividade.value)) {
-        alert('A atividade: ${inputNomeAtividade.value} já foi inserida');
+        alert(`A atividade: ${inputNomeAtividade.value} já foi inserida`);
     } else {
-atividades.push(inputNomeAtividade.value);
-    notas.push(parseFloat(inputNotaAtividade.value));
+        atividades.push(inputNomeAtividade.value);
+        notas.push(parseFloat(inputNotaAtividade.value));
 
-    let linha = `<tr>`;
-    linha += `<td>${inputNomeAtividade.value}</td>`;
-    linha += `<td>${inputNotaAtividade.value}</td>`;
-    linha += `<td>${inputNotaAtividade.value >= notaMinima ? imgAprovado : imgReprovado}</td>`;
-    linha += `</tr>`;
+        let linha = `<tr>`;
+        linha += `<td>${inputNomeAtividade.value}</td>`;
+        linha += `<td>${inputNotaAtividade.value}</td>`;
+        linha += `<td>${inputNotaAtividade.value >= notaMinima ? imgAprovado : imgReprovado}</td>`;
+        linha += `</tr>`;
 
-    linhas += linha;
+        linhas += linha;
     }
 
     inputNomeAtividade.value = '';
@@ -42,18 +42,18 @@ atividades.push(inputNomeAtividade.value);
 
 function atualizaTabela() {
     const corpoTabela = document.querySelector("tbody");
-    corpoTabela.innerHTML = linhas; // Use linhas em vez de linha
+    corpoTabela.innerHTML = linhas;
 }
 
 function atualizaMediaFinal() {
     const mediaFinal = calculaMediaFinal();
 
-    document.getElementById('media-final-valor').innerHTML = mediaFinal;
+    document.getElementById('media-final-valor').innerHTML = mediaFinal.toFixed(2);
     document.getElementById('media-final-resultado').innerHTML = mediaFinal >= notaMinima ? spanAprovado : spanReprovado;
 }
 
 function calculaMediaFinal() {
-   let somaDasNotas = 0;
+    let somaDasNotas = 0;
 
     for (let i = 0; i < notas.length; i++) {
         somaDasNotas += notas[i];
